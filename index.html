@@ -650,7 +650,15 @@
   <div class="hero-inner">
     <!-- Left -->
     <div>
-      <a href="https://www.promotic.eu/en/promotic/systemintegrator.htm" target="_blank" rel="noopener" class="hero-badge" style="text-decoration:none;transition:opacity .2s" onmouseover="this.style.opacity='.75'" onmouseout="this.style.opacity='1'">PROMOTIC System Integrator ↗</a>
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:20px">
+        <a href="https://www.promotic.eu/en/promotic/systemintegrator.htm" target="_blank" rel="noopener" class="hero-badge" style="text-decoration:none;transition:opacity .2s;margin-bottom:0" onmouseover="this.style.opacity='.75'" onmouseout="this.style.opacity='1'">PROMOTIC System Integrator ↗</a>
+        <div onclick="document.getElementById('cert-modal').style.display='flex'"
+             style="display:flex;align-items:center;gap:8px;cursor:pointer;padding:4px 10px 4px 4px;border-radius:20px;border:1px solid var(--border);background:var(--glass);transition:border-color .2s"
+             onmouseover="this.style.borderColor='rgba(0,200,160,.3)'" onmouseout="this.style.borderColor='var(--border)'">
+          <img src="SI_cert_en_Andriichuk.png" alt="Сертифікат System Integrator" style="width:26px;height:34px;object-fit:cover;border-radius:3px;border:1px solid rgba(255,255,255,.15)">
+          <span style="font-size:12px;color:var(--text2);font-weight:600">Переглянути сертифікат</span>
+        </div>
+      </div>
       <h1>Автоматизація та цифровізація<br><em>харчових виробництв</em></h1>
       <p>SCADA-системи, технологічний моніторинг HACCP та технічний енергомоніторинг для підприємств харчової галузі.</p>
       <div class="hero-exp">
@@ -1236,7 +1244,22 @@
     el.style.opacity = '0.6';
     setTimeout(() => el.style.opacity = '1', 120);
   }, 3000);
+
+  // Certificate lightbox
+  const certModal = document.getElementById('cert-modal');
+  function closeCertModal() { certModal.style.display = 'none'; }
+  certModal.addEventListener('click', (e) => { if (e.target === certModal) closeCertModal(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeCertModal(); });
 </script>
+
+<!-- ── CERTIFICATE LIGHTBOX ─────────────────────────────────────── -->
+<div id="cert-modal" style="display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.85);backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:24px;cursor:pointer">
+  <div style="position:relative;max-width:480px;width:100%;cursor:default" onclick="event.stopPropagation()">
+    <img src="SI_cert_en_Andriichuk.png" alt="Сертифікат PROMOTIC System Integrator — В'ячеслав Андрійчук" style="width:100%;border-radius:10px;box-shadow:0 20px 60px rgba(0,0,0,.6)">
+    <button onclick="document.getElementById('cert-modal').style.display='none'"
+            style="position:absolute;top:-16px;right:-16px;width:36px;height:36px;border-radius:50%;background:var(--teal);border:none;color:#06120f;font-size:18px;font-weight:700;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.4)">✕</button>
+  </div>
+</div>
 
 </body>
 </html>
