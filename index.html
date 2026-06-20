@@ -3,14 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="СКБ АСК СистемА — інженерне бюро промислової автоматизації. SCADA-системи, HACCP-моніторинг, технічний енергомоніторинг для харчових підприємств. Понад 30 років досвіду.">
+<meta name="description" content="СКБ СА СистемА — інженерне бюро промислової автоматизації. SCADA-системи, HACCP-моніторинг, технічний енергомоніторинг для харчових підприємств. Понад 30 років досвіду.">
 <meta name="keywords" content="SCADA, PROMOTIC, автоматизація, харчова промисловість, HACCP, енергомоніторинг, Siemens S7, OPC UA, Modbus">
-<meta property="og:title" content="СКБ АСК СистемА — Промислова автоматизація">
+<meta property="og:title" content="СКБ СА СистемА — Промислова автоматизація">
 <meta property="og:description" content="SCADA-системи, технологічний моніторинг HACCP та енергомоніторинг для підприємств харчової галузі.">
 <meta property="og:type" content="website">
 <meta name='freelancehunt' content='c936b06b60c0f37'>
 <meta name='freelancehunt' content='1ab1910783ba4f4'>
-<title>СКБ АСК СистемА — Інженерне бюро промислової автоматизації</title>
+<title>СКБ СА СистемА — Інженерне бюро промислової автоматизації</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon-180.png">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
 <style>
   /* ── RESET & BASE ─────────────────────────────────────────── */
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -625,7 +630,7 @@
   <a href="#" class="logo">
     <div class="logo-icon"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="8" width="84" height="84" rx="10" fill="#1a2330"/><polygon points="8,8 92,8 8,52" fill="#00c8a0"/><polygon points="8,52 92,92 8,92" fill="#4a6080"/><polygon points="8,52 92,8 92,92" fill="#f0f4f8"/></svg></div>
     <div class="logo-text">
-      <div class="logo-name">СКБ АСК СистемА</div>
+      <div class="logo-name">СКБ СА СистемА</div>
       <div class="logo-sub">Інженерне бюро промислової автоматизації</div>
     </div>
   </a>
@@ -1155,7 +1160,7 @@
       <div class="logo" style="margin-bottom:16px">
         <div class="logo-icon"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="8" width="84" height="84" rx="10" fill="#1a2330"/><polygon points="8,8 92,8 8,52" fill="#00c8a0"/><polygon points="8,52 92,92 8,92" fill="#4a6080"/><polygon points="8,52 92,8 92,92" fill="#f0f4f8"/></svg></div>
         <div class="logo-text">
-          <div class="logo-name">СКБ АСК СистемА</div>
+          <div class="logo-name">СКБ СА СистемА</div>
           <div class="logo-sub">Інженерне бюро промислової автоматизації</div>
         </div>
       </div>
@@ -1197,7 +1202,7 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© 2025 СКБ АСК СистемА. Усі права захищені.</span>
+    <span>© 2025 СКБ СА СистемА. Усі права захищені.</span>
     <span>
       <a href="mailto:promotic.ua@gmail.com" style="color:var(--text3);transition:color .2s" onmouseover="this.style.color='var(--teal)'" onmouseout="this.style.color='var(--text3)'">promotic.ua@gmail.com</a>
       &nbsp;·&nbsp;
@@ -1208,17 +1213,22 @@
 </footer>
 
 <script>
+document.addEventListener('DOMContentLoaded', function () {
   // Mobile nav
   const burger = document.getElementById('burger');
   const nav = document.getElementById('main-nav');
-  burger.addEventListener('click', () => nav.classList.toggle('open'));
-  burger.addEventListener('keydown', e => e.key === 'Enter' && nav.classList.toggle('open'));
-  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+  if (burger && nav) {
+    burger.addEventListener('click', () => nav.classList.toggle('open'));
+    burger.addEventListener('keydown', e => e.key === 'Enter' && nav.classList.toggle('open'));
+    nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+  }
 
   // SCADA clock
   function updateClock() {
+    const clockEl = document.getElementById('scada-clock');
+    if (!clockEl) return;
     const now = new Date();
-    document.getElementById('scada-clock').textContent =
+    clockEl.textContent =
       now.toLocaleTimeString('uk-UA', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
   }
   setInterval(updateClock, 1000);
@@ -1239,17 +1249,22 @@
 
   // Live sensor flicker (subtle)
   const vals = document.querySelectorAll('.proc-node-val, .param-val, .prom-vis-val');
-  setInterval(() => {
-    const el = vals[Math.floor(Math.random() * vals.length)];
-    el.style.opacity = '0.6';
-    setTimeout(() => el.style.opacity = '1', 120);
-  }, 3000);
+  if (vals.length) {
+    setInterval(() => {
+      const el = vals[Math.floor(Math.random() * vals.length)];
+      el.style.opacity = '0.6';
+      setTimeout(() => el.style.opacity = '1', 120);
+    }, 3000);
+  }
 
   // Certificate lightbox
   const certModal = document.getElementById('cert-modal');
-  function closeCertModal() { certModal.style.display = 'none'; }
-  certModal.addEventListener('click', (e) => { if (e.target === certModal) closeCertModal(); });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeCertModal(); });
+  if (certModal) {
+    function closeCertModal() { certModal.style.display = 'none'; }
+    certModal.addEventListener('click', (e) => { if (e.target === certModal) closeCertModal(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeCertModal(); });
+  }
+});
 </script>
 
 <!-- ── CERTIFICATE LIGHTBOX ─────────────────────────────────────── -->
